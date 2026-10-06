@@ -126,3 +126,25 @@ export function tideSummary(readings: TideReading[], key: TideKey, anchorTs?: st
     message: level ? levelMessages[level] : unknownMessage,
   };
 }
+
+export type TidePhrase = { title: string; plain: string; meaning: string };
+
+// Everyday tide words people already use at the coast, paired with what the moment means for the citizen.
+const phrases: Record<string, TidePhrase> = {
+  'alta-subindo': { title: 'A maré está quase no ponto mais alto', plain: 'A água está subindo e já está alta nesta estação.', meaning: 'Nos próximos momentos, a água ainda pode subir um pouco mais.' },
+  'alta-parada': { title: 'Maré cheia', plain: 'A água está alta e quase parou de mudar.', meaning: 'É o momento em que a água mais chega perto das ruas baixas. Isso não confirma alagamento.' },
+  'alta-descendo': { title: 'A maré está começando a baixar', plain: 'A água ainda está alta, mas já está descendo.', meaning: 'Nos próximos momentos, a água deve ficar um pouco mais baixa.' },
+  'moderada-subindo': { title: 'Maré enchendo', plain: 'A água está subindo nesta estação.', meaning: 'Daqui a pouco a água pode ficar mais alta que agora.' },
+  'moderada-parada': { title: 'Maré no meio do caminho', plain: 'A água está na altura do meio e quase parou de mudar.', meaning: 'Confira como está a rua antes de sair.' },
+  'moderada-descendo': { title: 'Maré vazando', plain: 'A água está descendo nesta estação.', meaning: 'Daqui a pouco a água pode ficar mais baixa que agora.' },
+  'baixa-subindo': { title: 'A maré está começando a subir', plain: 'A água ainda está baixa, mas já está subindo.', meaning: 'Nos próximos momentos, a água pode voltar a subir.' },
+  'baixa-parada': { title: 'Maré seca', plain: 'A água está baixa e quase parou de mudar.', meaning: 'Neste momento, as ruas mais baixas costumam ficar mais secas.' },
+  'baixa-descendo': { title: 'A maré ainda está baixando', plain: 'A água está descendo e já está baixa.', meaning: 'Nos próximos momentos, a água deve ficar ainda mais baixa.' },
+};
+const unknownPhrase: TidePhrase = { title: 'Ainda não é possível dizer como está a maré', plain: 'A medição mais recente desta estação não chegou.', meaning: 'Atualize daqui a alguns minutos ou consulte a outra estação.' };
+
+export function tidePhrase(summary: TideSummary): TidePhrase {
+  if (!summary.level) return unknownPhrase;
+  const phase = summary.trend === 'subindo' ? 'subindo' : summary.trend === 'descendo' ? 'descendo' : 'parada';
+  return phrases[`${summary.level}-${phase}`] ?? unknownPhrase;
+}

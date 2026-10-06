@@ -11,3 +11,4 @@
 - [x] Identify each tide station/location clearly beside its data.
 - [x] Send the updated platform link after verification.
 - [x] Verify the connected data in the app and retain separate academic scenarios.
+- [ ] Explain tide state in everyday citizen language (maré enchendo, cheia, vazando, seca) with what it means for risk, without inferring flooding.
