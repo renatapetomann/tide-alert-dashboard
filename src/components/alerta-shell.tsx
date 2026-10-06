@@ -21,6 +21,6 @@ export function AlertaShell({ children }: { children: ReactNode }) {
       <Link to="/fontes" className="demo-label"><FlaskConical size={14}/><span>Projeto acadêmico · confira a fonte</span></Link>
     </header>
     {children}
-    <footer className="app-footer"><span>ALERTA MARÉS <span className="footer-divider">/</span> Administração Pública · ESAG da UDESC</span><span>Mapa e riscos são exemplos. Não substitui a Defesa Civil.</span><a href="https://www.defesacivil.sc.gov.br/" target="_blank" rel="noreferrer">Defesa Civil <ArrowUpRight size={13}/></a></footer>
+    <footer className="app-footer"><span>ALERTA MARÉS <span className="footer-divider">/</span> Administração Pública · ESAG/UDESC</span><span>Mapa e riscos são exemplos. Não substitui a Defesa Civil.</span><a href="https://www.defesacivil.sc.gov.br/" target="_blank" rel="noreferrer">Defesa Civil <ArrowUpRight size={13}/></a></footer>
   </div>;
 }
