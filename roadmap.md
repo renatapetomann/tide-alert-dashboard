@@ -5,3 +5,4 @@
 - [ ] Verify interactions, mobile layout and route tests.
 - [ ] Report Radar SC access findings and integration limitations.
 - [ ] Use the group's original logo and brand colors; simplify all citizen-facing language and verify accessibility.
+- [ ] Add interactive map controls and citizen report submission with clear non-official labeling.
