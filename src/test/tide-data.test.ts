@@ -15,7 +15,10 @@ describe('Public tide data', () => {
     expect(() => parseTideFeed(data, new Date())).toThrow();
   });
   it('handles the year boundary using the nearest year', () => {
-    const data = feed('48.3'); data.rows[0].c[0] = { v: '31/12 23:45' };
+    const data = feed('48.3');
+    const row = data.rows[0];
+    if (!row) throw new Error('Missing test row');
+    row.c[0] = { v: '31/12 23:45' };
     expect(parseTideFeed(data, new Date('2027-01-01T03:00:00Z'))[0]?.timestamp).toBe('2027-01-01T02:45:00.000Z');
   });
 });
