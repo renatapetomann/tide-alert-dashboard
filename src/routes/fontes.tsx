@@ -1,0 +1,17 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { BookOpen, ArrowUpRight } from 'lucide-react';
+import { AlertaShell } from '@/components/alerta-shell';
+import { Button } from '@/components/ui/button';
+import { pageHead, levels } from '@/lib/scenarios';
+const sources = [
+  { name: 'GeoPortal de Florianópolis', description: 'Base territorial prevista para vias, bairros, limites e camadas geográficas.', url: 'https://geoportal.pmf.sc.gov.br/' },
+  { name: 'EPAGRI/CIRAM', description: 'Fonte prevista para condições ambientais e consulta de marés.', url: 'https://ciram.epagri.sc.gov.br/' },
+  { name: 'Marinha do Brasil', description: 'Referência oficial prevista para horários e alturas de marés.', url: 'https://www.marinha.mil.br/chm/tabuas-de-mare' },
+  { name: 'Radar SC', description: 'Referência de organização dos painéis e monitoramento complementar. O acesso público não equivale a autorização ou disponibilidade de integração.', url: 'https://radarsc.redmaxx.com.br/' },
+  { name: 'Histórico de David Andrade', description: 'Referência indicada pelo grupo para episódios de alagamento em Florianópolis. Endereço e conjunto de dados ainda precisam ser confirmados.' },
+  { name: 'Defesa Civil', description: 'Referência institucional para informações oficiais de risco e orientações de emergência.', url: 'https://www.defesacivil.sc.gov.br/' },
+];
+export const Route = createFileRoute('/fontes')({ head: () => pageHead('Fontes e transparência', 'Conheça as fontes previstas, os limites dos níveis de alerta e a privacidade do projeto acadêmico Alerta Marés.'), component: SourcesPage });
+function SourcesPage() {
+  return <AlertaShell><main className="content-page appear"><div className="eyebrow"><BookOpen size={13}/> FONTES E TRANSPARÊNCIA</div><h1>Informação com contexto</h1><p className="intro">Alerta Marés é um projeto acadêmico de Administração Pública da ESGA. Os valores, condições e níveis apresentados são simulados. Nenhuma das fontes abaixo está conectada ao painel; não há atualização em tempo real ou envio de notificações.</p>{sources.map(s => <article className="source-row" key={s.name}><div><h2>{s.name}</h2><small>INTEGRAÇÃO AINDA NÃO REALIZADA</small></div><p>{s.description}</p>{s.url && <Button variant="outline" size="icon" asChild><a href={s.url} aria-label={`Acessar ${s.name}`} title={`Acessar ${s.name}`} target="_blank" rel="noreferrer"><ArrowUpRight/></a></Button>}</article>)}<div className="mt-10"><h2>Níveis de alerta</h2>{Object.entries(levels).map(([key, value]) => <details key={key} className="disclosure"><summary><span className="status-label" data-level={key}><i className="status-dot"/>{value.label}</span></summary><p>{value.meaning}</p></details>)}</div><details className="disclosure"><summary>Limites e validação técnica</summary><p>A altura da maré isolada não confirma alagamento. Critérios quantitativos precisam ser validados com documentação técnica, dados históricos e fontes oficiais. O mapa mostrado é uma ilustração esquemática, não uma base cartográfica real. Nenhum nível do cenário confirma uma ocorrência real.</p></details><details className="disclosure"><summary>Privacidade e participação cidadã</summary><p>O protótipo não coleta geolocalização, não mantém histórico de deslocamentos e não recebe relatos. Em uma etapa futura, relatos cidadãos deverão ser identificados como não verificados, separados de informações oficiais, e tratados conforme a LGPD.</p></details></main></AlertaShell>;
+}

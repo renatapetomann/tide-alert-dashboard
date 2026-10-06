@@ -1,0 +1,8 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { Info, Waves } from 'lucide-react';
+import { AlertaShell } from '@/components/alerta-shell';
+import { pageHead, tides } from '@/lib/scenarios';
+export const Route = createFileRoute('/mares')({ head: () => pageHead('Consulta de marés', 'Tábua ilustrativa de marés para o protótipo acadêmico Alerta Marés. Conheça os limites e fontes da previsão.'), component: TidesPage });
+function TidesPage() {
+  return <AlertaShell><main className="content-page appear"><div className="eyebrow"><Waves size={13}/> CONSULTA DE MARÉS</div><h1>Marés de Florianópolis</h1><p className="intro">Horários e alturas de um cenário ilustrativo de 24 horas. Estes valores não correspondem à previsão do dia e não devem orientar decisões reais de deslocamento.</p><table className="tide-table"><thead><tr><th>HORÁRIO</th><th>CONDIÇÃO</th><th>ALTURA</th></tr></thead><tbody>{tides.map(t => <tr key={t.time}><td className="font-mono">{t.time}</td><td><span className="inline-flex items-center gap-2"><Waves size={16} className="text-primary"/>{t.type}</span></td><td>{t.height} m</td></tr>)}</tbody></table><p className="note"><Info size={13}/>Fonte deste painel: cenário acadêmico, sem conexão com estações ou tábuas oficiais. Fontes previstas: EPAGRI/CIRAM e Marinha do Brasil.</p><details className="disclosure"><summary>Como interpretar a maré?</summary><p>Preamar é o ponto alto de um ciclo de maré; baixa-mar é o ponto baixo. A possibilidade de alagamento também depende de vento, chuva, drenagem, topografia e histórico local. Não há limiar de risco validado neste protótipo.</p></details></main></AlertaShell>;
+}
