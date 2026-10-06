@@ -18,9 +18,9 @@ export function AlertaShell({ children }: { children: ReactNode }) {
       <a href="#conteudo" className="skip-link">Ir para o conteúdo</a>
       <Link to="/" className="brand" aria-label="Alerta Marés — início"><img className="brand-logo" src={logo.url} alt="Alerta Marés"/><span className="brand-place">Sul da Ilha<br/>Florianópolis</span></Link>
       <nav className="main-nav" aria-label="Navegação principal">{nav.map(({ to, label, icon: Icon }) => <Button key={to} variant="nav" data-active={pathname === to} asChild><Link to={to}><Icon/><span>{label}</span></Link></Button>)}</nav>
-      <Link to="/fontes" className="demo-label"><FlaskConical size={14}/><span>Projeto acadêmico · dados de exemplo</span></Link>
+      <Link to="/fontes" className="demo-label"><FlaskConical size={14}/><span>Projeto acadêmico · confira a fonte</span></Link>
     </header>
     {children}
-    <footer className="app-footer"><span>ALERTA MARÉS <span className="footer-divider">/</span> Administração Pública · ESGA</span><span>Dados ilustrativos. Não substitui orientações da Defesa Civil.</span><a href="https://www.defesacivil.sc.gov.br/" target="_blank" rel="noreferrer">Defesa Civil <ArrowUpRight size={13}/></a></footer>
+    <footer className="app-footer"><span>ALERTA MARÉS <span className="footer-divider">/</span> Administração Pública · ESAG da UDESC</span><span>Mapa e riscos são exemplos. Não substitui a Defesa Civil.</span><a href="https://www.defesacivil.sc.gov.br/" target="_blank" rel="noreferrer">Defesa Civil <ArrowUpRight size={13}/></a></footer>
   </div>;
 }

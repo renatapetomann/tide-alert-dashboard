@@ -1,8 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Info, Waves } from 'lucide-react';
+import { Waves } from 'lucide-react';
 import { AlertaShell } from '@/components/alerta-shell';
-import { pageHead, tides } from '@/lib/scenarios';
-export const Route = createFileRoute('/mares')({ head: () => pageHead('Consulta de marés', 'Horários de marés com dados de exemplo do Alerta Marés. Conheça as fontes previstas e os cuidados.'), component: TidesPage });
+import { pageHead } from '@/lib/scenarios';
+import { TidePanel } from '@/components/tide-panel';
+import { publicTidesOptions } from '@/lib/tides.query';
+export const Route = createFileRoute('/mares')({
+  head: () => pageHead('Marés por local', 'Consulte medições e previsão da EPAGRI/CIRAM para Florianópolis e Imbituba, com local e data. Maré alta não confirma alagamento.'),
+  loader: ({ context }) => context.queryClient.ensureQueryData(publicTidesOptions),
+  errorComponent: () => <AlertaShell><main id="conteudo" className="content-page"><h1>Não conseguimos abrir as marés</h1><a href="/mares">Tentar novamente</a></main></AlertaShell>,
+  notFoundComponent: () => <p>Página não encontrada</p>,
+  component: TidesPage,
+});
 function TidesPage() {
-  return <AlertaShell><main id="conteudo" className="content-page appear"><div className="eyebrow"><Waves size={13}/> CONSULTA DE MARÉS</div><h1>Marés de Florianópolis</h1><p className="intro">Horários e alturas com dados de exemplo. Não são a previsão de hoje. Não use estes valores para decidir seu caminho.</p><table className="tide-table"><thead><tr><th>HORÁRIO</th><th>CONDIÇÃO</th><th>ALTURA</th></tr></thead><tbody>{tides.map(t => <tr key={t.time}><td className="font-mono">{t.time}</td><td><span className="inline-flex items-center gap-2"><Waves size={16} className="text-primary"/>{t.type}</span></td><td>{t.height} m</td></tr>)}</tbody></table><p className="note"><Info size={13}/>Dados de exemplo, sem ligação com medições oficiais. Fontes previstas: EPAGRI/CIRAM e Marinha do Brasil.</p><details className="disclosure"><summary>Como interpretar a maré?</summary><p>Maré alta é quando o mar atinge seu nível mais alto; maré baixa é quando atinge o mais baixo. Uma rua pode alagar também por chuva, vento ou dificuldade de escoar a água. Maré alta não confirma alagamento.</p></details></main></AlertaShell>;
+  return <AlertaShell><main id="conteudo" className="content-page appear"><div className="eyebrow"><Waves size={13}/> CONSULTA DE MARÉS</div><h1>Marés por local</h1><p className="intro">Medições e previsão publicadas pela EPAGRI/CIRAM. Escolha a estação para consultar os dados daquele local. Não há medições separadas para cada bairro do Sul da Ilha.</p><TidePanel/><details className="disclosure"><summary>Como interpretar a maré?</summary><p>Maré alta é quando o mar atinge seu nível mais alto; maré baixa é quando atinge o mais baixo. Uma rua pode alagar também por chuva, vento ou dificuldade de escoar a água. Maré alta não confirma alagamento. Estes dados não garantem que um caminho esteja seguro.</p></details></main></AlertaShell>;
 }
