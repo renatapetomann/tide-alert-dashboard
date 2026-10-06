@@ -13,3 +13,4 @@
 - Keep academic scenario data in a browser-safe shared module; no scenario value should be presented as live monitoring.
 - Use content leaf routes for tides, route consultation and sources, with the shared dashboard header in a reusable shell.
 - Route consultation is a scenario comparison with an external routing referral, not a validated navigation or flood-prediction engine.
+- Citizen reports accept only structured neighborhood and issue fields, remain private pending review, and never change official or scenario risk levels; this avoids publishing unverified claims or personal details.
