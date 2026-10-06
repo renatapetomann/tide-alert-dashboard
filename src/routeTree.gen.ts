@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FontesRouteImport } from './routes/fontes'
+import { Route as MaresRouteImport } from './routes/mares'
+import { Route as TrajetoRouteImport } from './routes/trajeto'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FontesRoute = FontesRouteImport.update({
+  id: '/fontes',
+  path: '/fontes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaresRoute = MaresRouteImport.update({
+  id: '/mares',
+  path: '/mares',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrajetoRoute = TrajetoRouteImport.update({
+  id: '/trajeto',
+  path: '/trajeto',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/fontes': typeof FontesRoute
+  '/mares': typeof MaresRoute
+  '/trajeto': typeof TrajetoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/fontes': typeof FontesRoute
+  '/mares': typeof MaresRoute
+  '/trajeto': typeof TrajetoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/fontes': typeof FontesRoute
+  '/mares': typeof MaresRoute
+  '/trajeto': typeof TrajetoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/fontes' | '/mares' | '/trajeto'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/fontes' | '/mares' | '/trajeto'
+  id: '__root__' | '/' | '/fontes' | '/mares' | '/trajeto'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FontesRoute: typeof FontesRoute
+  MaresRoute: typeof MaresRoute
+  TrajetoRoute: typeof TrajetoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fontes': {
+      id: '/fontes'
+      path: '/fontes'
+      fullPath: '/fontes'
+      preLoaderRoute: typeof FontesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mares': {
+      id: '/mares'
+      path: '/mares'
+      fullPath: '/mares'
+      preLoaderRoute: typeof MaresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trajeto': {
+      id: '/trajeto'
+      path: '/trajeto'
+      fullPath: '/trajeto'
+      preLoaderRoute: typeof TrajetoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FontesRoute: FontesRoute,
+  MaresRoute: MaresRoute,
+  TrajetoRoute: TrajetoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
