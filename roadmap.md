@@ -9,4 +9,5 @@
 - [ ] Connect verified public source data with timestamps, provenance and unavailable states.
 - [ ] Correct the institution name to ESAG da UDESC throughout the platform.
 - [ ] Identify each tide station/location clearly beside its data.
+- [ ] Send the updated platform link after verification.
 - [ ] Verify the connected data in the app and retain separate academic scenarios.
