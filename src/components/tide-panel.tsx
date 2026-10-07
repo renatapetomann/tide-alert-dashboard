@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { RefreshCw, ArrowUpRight, Waves } from 'lucide-react';
@@ -41,7 +41,7 @@ export function TidePanel({ compact = false }: { compact?: boolean }) {
         <p className="tide-now-message">{phrase.plain}</p>
         <div className="tide-now-advice"><span className="eyebrow">O que isso significa</span><p>{phrase.meaning}</p></div>
         <p className="tide-now-meta">{height(status.value)}{status.label ? ` · ${status.label}, horário de Brasília` : ''}</p>
-        {ratio !== null && <div className="tide-scale" aria-hidden="true"><span className="tide-scale-track"><i style={{ left: `${ratio.toFixed(1)}%` }}/></span><span className="tide-scale-labels"><span>Mais baixo</span><span>Mais alto</span></span></div>}
+        {ratio !== null && <div className="tide-scale" aria-hidden="true"><span className="tide-scale-track"><i style={{ '--x': `${ratio.toFixed(1)}%` } as CSSProperties}/></span><span className="tide-scale-labels"><span>Mais baixo</span><span>Mais alto</span></span></div>}
         {stale && <p role="status" className="tide-now-meta">A medição está atrasada ou indisponível. Não representa a situação de agora.</p>}
         <p className="tide-now-meta">Se a rua estiver alagada, não passe. Em emergência, ligue 199 (Defesa Civil) ou 193 (Bombeiros).</p>
       </div>
