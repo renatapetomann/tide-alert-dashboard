@@ -86,6 +86,19 @@ h1 { font-size: 26px; line-height: 1.3; font-weight: 700; margin: 7px 0 0; } h2 
 .tide-bars span:nth-child(1) { height: 25%; } .tide-bars span:nth-child(2) { height: 61%; } .tide-bars span:nth-child(3) { height: 94%; } .tide-bars span:nth-child(4) { height: 55%; } .tide-bars span:nth-child(5) { height: 21%; } .tide-bars span:nth-child(6) { height: 48%; } .tide-bars span:nth-child(7) { height: 81%; } .tide-bars span:nth-child(8) { height: 43%; }
 .tide-times { display: flex; justify-content: space-between; gap: 10px; padding-top: 12px; font-family: var(--font-mono); font-size: 9px; color: var(--muted-foreground); }
 .tide-times strong { display: block; color: var(--foreground); font-size: 11px; margin-bottom: 5px; font-weight: 500; }
+.tide-now { border: 1px solid var(--border); border-left: 6px solid var(--primary); background: var(--card); padding: 18px 20px; margin-top: 16px; }
+.tide-now[data-level="baixa"] { border-left-color: color-mix(in oklab, var(--primary) 30%, var(--background)); }
+.tide-now[data-level="moderada"] { border-left-color: color-mix(in oklab, var(--primary) 65%, var(--background)); }
+.tide-now[data-level="alta"] { border-left-color: var(--primary); }
+.tide-now-title { display: block; font-size: 26px; line-height: 1.3; font-weight: 600; margin-top: 6px; }
+.tide-now-message { font-size: 16px; line-height: 1.7; margin-top: 8px; }
+.tide-now-advice { margin-top: 14px; padding: 12px 14px; background: color-mix(in oklab, var(--primary) 7%, var(--background)); border-radius: 4px; }
+.tide-now-advice p { font-size: 15px; line-height: 1.7; margin-top: 2px; }
+.tide-now-meta { font-size: 13px; color: var(--muted-foreground); margin-top: 8px; line-height: 1.6; }
+.tide-scale { margin-top: 16px; }
+.tide-scale-track { position: relative; display: block; height: 10px; border-radius: 999px; background: color-mix(in oklab, var(--primary) 14%, var(--background)); }
+.tide-scale-track i { position: absolute; top: -5px; width: 20px; height: 20px; border-radius: 999px; background: var(--primary); border: 3px solid var(--background); left: clamp(8px, var(--x, 50%), calc(100% - 8px)); }
+.tide-scale-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted-foreground); margin-top: 10px; }
 .note { font-size: 10px; color: var(--muted-foreground); line-height: 1.8; display: flex; align-items: flex-start; gap: 7px; margin-top: 16px; } .note svg { flex-shrink: 0; margin-top: 2px; }
 .right-column { display: flex; flex-direction: column; gap: 16px; padding-left: 17px; border-left: 1px solid var(--border); }
 .right-column>.eyebrow { margin-top: 16px; }
