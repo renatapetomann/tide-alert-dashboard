@@ -12,7 +12,7 @@ export function AccessibilityBar() {
   }, []);
   useEffect(() => {
     document.documentElement.style.setProperty('--zoom', String(sizes[size]));
-    document.documentElement.dataset.contrast = contrast ? 'high' : 'normal';
+    document.documentElement.dataset['contrast'] = contrast ? 'high' : 'normal';
     localStorage.setItem('am-font', String(size));
     localStorage.setItem('am-contrast', contrast ? '1' : '0');
   }, [size, contrast]);
