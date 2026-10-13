@@ -21,6 +21,19 @@ function AccessibilityPage() {
       <li><strong>Alt + 4</strong>: abrir esta página</li>
     </ul>
     <p className="text-sm text-muted-foreground">No Firefox, use Alt + Shift + número. No Mac, use Control + Option + número.</p>
+    <h2 className="mt-8">Para pessoas cegas ou com baixa visão</h2>
+    <ul className="a11y-list">
+      <li>O botão <strong>Ouvir a página</strong> lê em voz alta o conteúdo da página. Clique de novo para parar.</li>
+      <li>A plataforma funciona com leitores de tela, como NVDA, JAWS, VoiceOver e TalkBack.</li>
+      <li>Todas as imagens têm descrição em texto, e a situação da maré é anunciada quando muda.</li>
+      <li>É possível usar tudo só com o teclado.</li>
+    </ul>
+    <h2 className="mt-8">Para pessoas surdas ou com deficiência auditiva</h2>
+    <ul className="a11y-list">
+      <li>O ícone azul de mãos, no canto da tela, abre o <strong>VLibras</strong>, ferramenta do Governo Federal que traduz o texto para Libras.</li>
+      <li>Clique no ícone e depois em qualquer texto para ver a tradução.</li>
+      <li>Nenhum aviso depende de som: todas as informações aparecem escritas.</li>
+    </ul>
     <h2 className="mt-8">Letras e cores</h2>
     <ul className="a11y-list">
       <li><strong>A+</strong> deixa as letras maiores, <strong>A−</strong> deixa menores e <strong>A</strong> volta ao normal.</li>

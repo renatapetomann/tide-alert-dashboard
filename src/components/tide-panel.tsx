@@ -35,7 +35,7 @@ export function TidePanel({ compact = false }: { compact?: boolean }) {
     {!compact && <label className="field">Local da estação<select value={stationId} onChange={event => { const found = tideStations.find(s => s.id === event.target.value); if (found) setStationId(found.id); }}><option value="florianopolis">Florianópolis · estação 2951</option><option value="imbituba">Imbituba · estação 2963 (outra cidade)</option></select></label>}
     <p className="text-sm text-muted-foreground leading-7">{station.note}</p>
     {result?.error ? <p role="status" className="text-sm">{result.error}</p> : <>
-      <div className="tide-now" data-level={status.level ?? 'unknown'}>
+      <div className="tide-now" aria-live="polite" data-level={status.level ?? 'unknown'}>
         <p className="status-label">{fromEstimate ? 'Estimativa agora' : 'Agora'} · {station.name}</p>
         <strong className="tide-now-title">{phrase.title}</strong>
         <p className="tide-now-message">{phrase.plain}</p>
