@@ -155,3 +155,15 @@ h2 { font-size: 16px; }
 button,select,.main-nav a { min-height: 44px; }
 @media(max-width:1100px) { .brand-place { display: none; } .monitor-grid { grid-template-columns: 180px minmax(0,1fr); } .right-column { grid-column: 1/-1; border-left: 0; border-top: 1px solid var(--border); padding-left: 0; display: grid; grid-template-columns: 1fr 1fr; } .right-column>.eyebrow,.source-mini { grid-column: 1/-1; } }
 @media(max-width:760px) { .brand-logo { width: 195px; height: 58px; } .monitor-grid { grid-template-columns: minmax(0,1fr); } .right-column { display: flex; } .page-top { flex-direction: column; gap: 10px; } .page-meta { text-align: left; } .main-nav a { font-size: 12px; } .section-heading h2 { font-size: 15px; } .map-art { min-height: 400px; } }
+.app-shell { zoom: var(--zoom, 1); }
+.a11y-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; padding: 6px 28px; background: var(--secondary); border-bottom: 1px solid var(--border); font-size: 13px; }
+.a11y-bar ul { display: flex; flex-wrap: wrap; gap: 4px 14px; list-style: none; margin: 0; padding: 0; align-items: center; }
+.a11y-bar a, .a11y-bar button { color: var(--foreground); background: none; border: 0; padding: 4px 2px; min-height: 32px; cursor: pointer; text-decoration: underline; }
+.a11y-bar button { font-weight: 700; }
+.a11y-bar button[aria-pressed=true] { color: var(--primary); }
+.a11y-shortcuts span { display: inline-block; margin-left: 4px; padding: 0 5px; border: 1px solid var(--input); border-radius: 3px; font-size: 11px; text-decoration: none; }
+.a11y-list { margin: 10px 0 14px; padding-left: 20px; list-style: disc; line-height: 1.9; font-size: 15px; }
+html[data-contrast=high] { --background: #000; --foreground: #fff; --card: #000; --secondary: #000; --border: #fff; --input: #fff; --muted-foreground: #fff; --primary: #ff0; --primary-foreground: #000; }
+html[data-contrast=high] a { color: #ff0; }
+html[data-contrast=high] img:not(.brand-logo) { filter: grayscale(1) contrast(1.2); }
+html[data-contrast=high] .brand-logo { background: #fff; border-radius: 4px; }
