@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AcessibilidadeRouteImport } from './routes/acessibilidade'
 import { Route as FontesRouteImport } from './routes/fontes'
 import { Route as MaresRouteImport } from './routes/mares'
 import { Route as TrajetoRouteImport } from './routes/trajeto'
@@ -17,6 +18,11 @@ import { Route as TrajetoRouteImport } from './routes/trajeto'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcessibilidadeRoute = AcessibilidadeRouteImport.update({
+  id: '/acessibilidade',
+  path: '/acessibilidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FontesRoute = FontesRouteImport.update({
@@ -37,12 +43,14 @@ const TrajetoRoute = TrajetoRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/fontes': typeof FontesRoute
   '/mares': typeof MaresRoute
   '/trajeto': typeof TrajetoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/fontes': typeof FontesRoute
   '/mares': typeof MaresRoute
   '/trajeto': typeof TrajetoRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/acessibilidade': typeof AcessibilidadeRoute
   '/fontes': typeof FontesRoute
   '/mares': typeof MaresRoute
   '/trajeto': typeof TrajetoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/fontes' | '/mares' | '/trajeto'
+  fullPaths: '/' | '/acessibilidade' | '/fontes' | '/mares' | '/trajeto'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/fontes' | '/mares' | '/trajeto'
-  id: '__root__' | '/' | '/fontes' | '/mares' | '/trajeto'
+  to: '/' | '/acessibilidade' | '/fontes' | '/mares' | '/trajeto'
+  id: '__root__' | '/' | '/acessibilidade' | '/fontes' | '/mares' | '/trajeto'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcessibilidadeRoute: typeof AcessibilidadeRoute
   FontesRoute: typeof FontesRoute
   MaresRoute: typeof MaresRoute
   TrajetoRoute: typeof TrajetoRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acessibilidade': {
+      id: '/acessibilidade'
+      path: '/acessibilidade'
+      fullPath: '/acessibilidade'
+      preLoaderRoute: typeof AcessibilidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fontes': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcessibilidadeRoute: AcessibilidadeRoute,
   FontesRoute: FontesRoute,
   MaresRoute: MaresRoute,
   TrajetoRoute: TrajetoRoute,
