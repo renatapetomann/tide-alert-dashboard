@@ -167,3 +167,5 @@ html[data-contrast=high] { --background: #000; --foreground: #fff; --card: #000;
 html[data-contrast=high] a { color: #ff0; }
 html[data-contrast=high] img:not(.brand-logo) { filter: grayscale(1) contrast(1.2); }
 html[data-contrast=high] .brand-logo { background: #fff; border-radius: 4px; }
+.real-map { position: absolute; inset: 0; z-index: 0; }
+.real-map .leaflet-tooltip { font-family: var(--font-sans); font-size: 12px; }
